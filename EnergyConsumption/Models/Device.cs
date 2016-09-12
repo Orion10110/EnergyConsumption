@@ -14,7 +14,7 @@ namespace EnergyConsumption.Models
         public double Hour { get; set; }
         public double Day { get; set; }
 
-        public int? IdHome { get; set; }
+        public int? Home_Id { get; set; }
         public Home Home { get; set; }
 
     }
@@ -32,7 +32,7 @@ namespace EnergyConsumption.Models
             Devices = new List<Device>();
         }
 
-        public string UserId { get; set; }
+        public string ApplicationUser_Id { get; set; }
     }
 
 }

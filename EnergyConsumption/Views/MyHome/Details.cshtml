@@ -1,0 +1,62 @@
+﻿@model EnergyConsumption.Models.Home
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Home</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        
+
+    </dl>
+    <p>
+        @Html.ActionLink("Create New", "Create", "Device", new {id= Model.Id})
+    </p>
+    <table class="table">
+   
+               
+
+    @foreach (var item in Model.Devices)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.W)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day)
+            </td>
+           
+            <td>
+                @Html.ActionLink("Edit", "EditDevice", "Device", new { id = item.Id})|
+                @Html.ActionLink("Details", "DetailsDevise", "Device", new { id = item.Id})|
+                @Html.ActionLink("Delete","DeleteDevise", "Device", new { id = item.Id})
+              </td>
+        </tr>
+    }
+        </table>
+</div>
+<p>
+  
+    @Html.ActionLink("Back to List", "Index")
+</p>

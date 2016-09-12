@@ -25,9 +25,9 @@ namespace EnergyConsumption.Controllers
         // GET: ToDoes
         public ActionResult Index()
         {
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-            var todo = db.Homes.Where(t => t.UserId == currentUser.Id).ToList();
-            return View(todo);
+            //var currentUser = manager.FindById(User.Identity.GetUserId());
+            //var todo = db.Homes.Where(t => t.ApplicationUser_Id == currentUser.Id).ToList();
+            return View();
         }
       
 
