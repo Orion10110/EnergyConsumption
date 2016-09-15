@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace EnergyConsumption.Controllers
 {
+    [Authorize]
     public class MyHomeController : Controller
     {
         private UserManager<ApplicationUser> manager;
@@ -31,8 +32,9 @@ namespace EnergyConsumption.Controllers
         {
 
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            var todo = db.Homes.Where(t => t.ApplicationUser_Id == currentUser.Id).ToList();
-            return View(todo);
+            var home = db.Homes.Where(t => t.ApplicationUser_Id == currentUser.Id).ToList();
+
+            return View(home);
         }
 
         public ActionResult Create()
@@ -124,6 +126,9 @@ namespace EnergyConsumption.Controllers
                 return HttpNotFound();
             }
             return View(home);
+
+
+
         }
 
 
