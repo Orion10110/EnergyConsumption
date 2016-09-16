@@ -24,7 +24,7 @@ namespace EnergyConsumption.Controllers
         public ActionResult Index()
         {
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            var Homes = db.Homes.Where(t => t.ApplicationUser_Id == currentUser.Id).ToList();
+            var Homes = db.Homes.Where(t => t.ApplicationUserID == currentUser.Id).ToList();
             return View(Homes);
         }
     }

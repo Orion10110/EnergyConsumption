@@ -1,0 +1,23 @@
+﻿@model IEnumerable<EnergyConsumption.Models.Home>
+
+
+
+
+
+    @foreach (var item in Model)
+    {
+        <li> @Html.ActionLink(item.Name, "Details", new { id = item.Id })</li>
+                @*@Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>*@
+       
+    }
+    <li>
+        @Html.ActionLink("Create New", "Create")
+   </li>
+
+

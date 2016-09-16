@@ -24,15 +24,20 @@ namespace EnergyConsumption.Controllers
         }
 
 
-      
+        public ActionResult HomeList()
+        {
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            var home = db.Homes.Where(t => t.ApplicationUserID == currentUser.Id).ToList();
+            return PartialView(home);
+        }
 
-       
+
         // GET: Device
         public ActionResult Index()
         {
 
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            var home = db.Homes.Where(t => t.ApplicationUser_Id == currentUser.Id).ToList();
+            var home = db.Homes.Where(t => t.ApplicationUserID == currentUser.Id).ToList();
 
             return View(home);
         }
@@ -51,7 +56,7 @@ namespace EnergyConsumption.Controllers
 
             if (ModelState.IsValid)
             {
-                home.ApplicationUser_Id = User.Identity.GetUserId();
+                home.ApplicationUserID = User.Identity.GetUserId();
                 db.Entry(home).State = EntityState.Added;
                 db.Homes.Add(home);
                 db.SaveChanges();
@@ -81,7 +86,7 @@ namespace EnergyConsumption.Controllers
         {
             if (ModelState.IsValid)
             {
-                home.ApplicationUser_Id = User.Identity.GetUserId();
+                home.ApplicationUserID = User.Identity.GetUserId();
                 db.Entry(home).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -103,7 +108,7 @@ namespace EnergyConsumption.Controllers
             return View(home);
         }
 
-        // POST: ToDoes/Delete/5
+        // POST: 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -120,7 +125,8 @@ namespace EnergyConsumption.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Home home= db.Homes.Find(id);
+            Home home = db.Homes.Include(t=> t.Devices).FirstOrDefault(t=>t.Id == id);
+       
             if (home == null)
             {
                 return HttpNotFound();

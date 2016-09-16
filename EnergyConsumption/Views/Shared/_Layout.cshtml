@@ -25,6 +25,8 @@
                     <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
                     <li>@Html.ActionLink("О программе", "About", "Home")</li>
                     <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+                   
+                   
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,6 +42,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/scripts/unobtrusive")
     @RenderSection("scripts", required: false)
 </body>
 </html>

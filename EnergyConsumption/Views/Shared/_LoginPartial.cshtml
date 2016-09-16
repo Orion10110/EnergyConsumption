@@ -1,6 +1,16 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
+    
+    <script type="text/javascript">
+    function OnSuccess(data) {
+        var results = $('#results'); // получаем нужный элемент
+        results.empty(); //очищаем элемент
+        for (var i = 0; i < data.length; i++) {
+            results.append('<li>' + data[i].Name + '</li>'); // добавляем данные в список
+        }
+    }
+    </script>
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
@@ -8,6 +18,18 @@
     <ul class="nav navbar-nav navbar-right">
         <li>
             @Html.ActionLink("Здравствуйте, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li>
+            @*<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Квартиры*@
+            
+                @Ajax.ActionLink("Кваптиры", "HomeList", "MyHome",null,new AjaxOptions { UpdateTargetId= "myhome" },htmlAttributes: new { @class="btn dropdown-toggle", data_toggle="dropdown", href = "#" })
+                <ul class="dropdown-menu" id="myhome">
+                    <li><a tabindex="-1" href="#">Действие</a></li>
+                    <li><a tabindex="-1" href="#">Другое действие</a></li>
+                    <li><a tabindex="-1" href="#">Еще ссылка</a></li>
+                </ul>
+           
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
     </ul>
@@ -20,3 +42,4 @@ else
         <li>@Html.ActionLink("Выполнить вход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
+
