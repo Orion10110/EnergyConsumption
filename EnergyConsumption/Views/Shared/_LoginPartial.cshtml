@@ -19,17 +19,26 @@
         <li>
             @Html.ActionLink("Здравствуйте, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-        <li>
-            @*<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                Квартиры*@
-            
-                @Ajax.ActionLink("Кваптиры", "HomeList", "MyHome",null,new AjaxOptions { UpdateTargetId= "myhome" },htmlAttributes: new { @class="btn dropdown-toggle", data_toggle="dropdown", href = "#" })
-                <ul class="dropdown-menu" id="myhome">
-                    <li><a tabindex="-1" href="#">Действие</a></li>
-                    <li><a tabindex="-1" href="#">Другое действие</a></li>
-                    <li><a tabindex="-1" href="#">Еще ссылка</a></li>
+        <li class="dropdown">
+            @*<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> string.Format("<span>Purchase</span><em>{0:c}</em>", Model.thisItem.ItemSalePrice)
+    Квартиры*@
+            @*<li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Page 1-1</a></li>
+                    <li><a href="#">Page 1-2</a></li>
+                    <li><a href="#">Page 1-3</a></li>
                 </ul>
-           
+            </li>*@
+
+            @Ajax.ActionLink(string.Format("apartments"), "HomeList", "MyHome", null, new AjaxOptions { UpdateTargetId = "myhome", LoadingElementId = "loading",
+           LoadingElementDuration = 1000 }, htmlAttributes: new { @class = "dropdown-toggle", data_toggle = "dropdown"})
+            <ul class="dropdown-menu" id="myhome">
+                <li id="loading" style="display:none; text-align: center;">
+                    <img src="~/Content/Images/ajax-loader.gif" />
+                </li>
+            </ul>
+            
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
     </ul>

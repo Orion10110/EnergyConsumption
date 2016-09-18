@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -48,7 +49,57 @@ namespace EnergyConsumption.Controllers
             return RedirectToAction("Details","MyHome", new {id= device.HomeID.ToString() });
         }
 
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Device device = db.Divaces.Find(id);
+            if (device == null)
+            {
+                return HttpNotFound();
+            }
+            return View(device);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Device device)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                db.Entry(device).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details", "MyHome", new { id = device.HomeID.ToString() });
+            }
+            return View(device);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Device device = db.Divaces.Find(id);
+            if (device == null)
+            {
+                return HttpNotFound();
+            }
+            return View(device);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Device device = db.Divaces.Find(id);
+            db.Divaces.Remove(device);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
     }
 }
