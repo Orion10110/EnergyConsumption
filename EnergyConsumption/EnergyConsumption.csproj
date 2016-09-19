@@ -297,6 +297,7 @@
     <Content Include="Views\MyHome\HomeList.cshtml" />
     <Content Include="Views\Device\Edit.cshtml" />
     <Content Include="Views\Device\Delete.cshtml" />
+    <Content Include="Views\Device\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

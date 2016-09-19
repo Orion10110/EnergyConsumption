@@ -23,15 +23,16 @@
     </dl>
     <p>
         @Html.ActionLink("Create Newe", "Create", "Device", new {id= Model.Id},null)
-    </p>
+        
+     </p>
     <table class="table">
    
-               
-
+      
     @foreach (var item in Model.Devices)
     {
         <tr>
             <td>
+
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
@@ -50,12 +51,14 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", "Device", new { id = item.Id},null)|
                 @Html.ActionLink("Details", "DetailsDevise", "Device", new { id = item.Id},null)
-                @Html.ActionLink("Delete","DeleteDevise", "Device", new { id = item.Id},null)
+                @Html.ActionLink("Delete","Delete", "Device", new { id = item.Id},null)
               </td>
         </tr>
     }
+  
         </table>
 </div>
+<p> @Html.Label("Ват в  месяц " + @ViewBag.HomeW as String);</p>
 <p>
   
     @Html.ActionLink("Back to List", "Index")

@@ -126,7 +126,8 @@ namespace EnergyConsumption.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Home home = db.Homes.Include(t=> t.Devices).FirstOrDefault(t=>t.Id == id);
-       
+            ViewBag.HomeW = home.Devices.Sum(x => x.W * x.Hour * x.Day*x.Number).ToString();
+
             if (home == null)
             {
                 return HttpNotFound();

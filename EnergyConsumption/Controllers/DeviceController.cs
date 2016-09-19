@@ -20,9 +20,25 @@ namespace EnergyConsumption.Controllers
 
 
         // GET: Device
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Home home = db.Homes.Include(t => t.Devices).FirstOrDefault(t => t.Id == id);
+           
+            List<Device> devices = new List<Device>(home.Devices);
+            if (devices == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.HomeW = home.Devices.Sum(x => x.W * x.Hour * x.Day * x.Number).ToString();
+            ViewBag.HomeID = id;
+            return View(devices);
+
+
+
         }
 
         public ActionResult Create(int? id )
@@ -96,9 +112,10 @@ namespace EnergyConsumption.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Device device = db.Divaces.Find(id);
+            string HomeId = device.HomeID.ToString(); 
             db.Divaces.Remove(device);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "MyHome", new { id = HomeId });
         }
 
     }
