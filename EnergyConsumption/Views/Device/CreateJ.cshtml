@@ -1,0 +1,34 @@
+﻿@model EnergyConsumption.Models.Device
+<tr>
+    @using (Ajax.BeginForm("Create", null, null, new { style = "display:hidden", id = "myform" }))
+    {
+
+        @Html.AntiForgeryToken()
+    }
+
+
+
+    <td>
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", form = " myform" } })
+    </td>
+    <td>
+
+        @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control", form = "myform" } })
+    </td>
+    <td>
+        @Html.EditorFor(model => model.W, new { htmlAttributes = new { @class = "form-control", form = "myform" } })
+    </td>
+    <td>
+        @Html.EditorFor(model => model.Hour, new { htmlAttributes = new { @class = "form-control", form = "myform" } })
+    </td>
+    <td>
+        @Html.EditorFor(model => model.Day, new { htmlAttributes = new { @class = "form-control", form = "myform" } })
+    </td>
+
+    <td>
+        <input type="submit" value="Create" class="btn btn-default" form="myform" />
+    </td>
+
+</tr>
+
+

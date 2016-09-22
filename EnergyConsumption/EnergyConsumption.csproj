@@ -228,6 +228,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\ajax-loader.gif" />
+    <Content Include="Content\modelStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -249,6 +250,11 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\classie.js" />
+    <Content Include="Scripts\js\css-filters-polyfill.js" />
+    <Content Include="Scripts\js\cssParser.js" />
+    <Content Include="Scripts\js\modalEffects.js" />
+    <Content Include="Scripts\js\modernizr.custom.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -299,6 +305,7 @@
     <Content Include="Views\Device\Edit.cshtml" />
     <Content Include="Views\Device\Delete.cshtml" />
     <Content Include="Views\Device\Index.cshtml" />
+    <Content Include="Views\Device\CreateJ.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

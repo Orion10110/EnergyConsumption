@@ -27,6 +27,9 @@ namespace EnergyConsumption
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/modal").Include(
+                     "~/Content/modelStyle.css"));
+
             bundles.Add(new ScriptBundle("~/scripts/unobtrusive").Include(
                      "~/Scripts/jquery.unobtrusive-ajax.js"));
         }

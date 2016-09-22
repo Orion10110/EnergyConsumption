@@ -62,7 +62,7 @@ namespace EnergyConsumption.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Details","MyHome", new {id= device.HomeID.ToString() });
+            return RedirectToAction("Index", new {id= device.HomeID.ToString() });
         }
 
         public ActionResult Edit(int? id)
@@ -93,6 +93,24 @@ namespace EnergyConsumption.Controllers
             return View(device);
         }
 
+        [HttpPost]
+        
+        public string EditJ(Device DataDevice)
+        {
+            Device device = db.Divaces.Find(DataDevice.Id);
+            device.Day = DataDevice.Day;
+            device.Name = DataDevice.Name;
+            device.W = DataDevice.W;
+            device.Number = DataDevice.Number;
+            device.Hour = DataDevice.Hour;
+            db.Entry(device).State = EntityState.Modified;
+            db.SaveChanges();
+                      
+            string data = "Sucses";
+            return data;
+         
+        }
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,6 +135,24 @@ namespace EnergyConsumption.Controllers
             db.SaveChanges();
             return RedirectToAction("Details", "MyHome", new { id = HomeId });
         }
+
+
+        
+        [HttpPost]
+        public string DeleteJ(int id)
+        {
+            Device device = db.Divaces.Find(id);
+            string HomeId = device.HomeID.ToString(); 
+            db.Divaces.Remove(device);
+            db.SaveChanges();
+            return "Sucses";
+        }
+
+        public ActionResult CreateJ()
+        {
+            return PartialView();
+        }
+
 
     }
 }

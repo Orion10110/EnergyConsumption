@@ -7,7 +7,7 @@
     <title>@ViewBag.Title – приложение ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @RenderSection("styles", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -44,5 +44,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/scripts/unobtrusive")
     @RenderSection("scripts", required: false)
+   
 </body>
 </html>
